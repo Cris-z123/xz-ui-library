@@ -1,0 +1,23 @@
+{
+  "name": "xz-ui",
+  "version": "1.0.0",
+  "description": "这是一个UI框架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rookie996-object/xz-ui-library.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "zyb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rookie996-object/xz-ui-library/issues"
+  },
+  "homepage": "https://github.com/rookie996-object/xz-ui-library#readme"
+}
