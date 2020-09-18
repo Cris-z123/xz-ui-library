@@ -3,6 +3,7 @@ import Button from './button'
 import Icon from './icon'
 import ButtonGroup from './button-group'
 import chai from 'chai'
+import spies from 'chai-spies'
 
 Vue.component('z-button', Button)
 Vue.component('z-icon', Icon)
@@ -16,6 +17,7 @@ new Vue({
 })
 
 //unit testing
+chai.use(spies)
 const expect = chai.expect
 {
     const Constructor = Vue.extend(Button)
@@ -84,6 +86,7 @@ const expect = chai.expect
 }
 
 {
+    //mock
     const Constructor = Vue.extend(Button)
     const vm = new Constructor({
         propsData: {
@@ -91,9 +94,14 @@ const expect = chai.expect
         }
     })
     vm.$mount()
-    vm.$on('click', function() {
-        expect(1).to.eq(1)
-    })
+
+    //间谍函数
+    let spy = chai.spy(function(){})
+
+    //希望这个函数被执行
+    vm.$on('click', spy)
+
     let button = vm.$el
     button.click()
+    expect(spy).to.have.been.called()
 }
