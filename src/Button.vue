@@ -1,20 +1,21 @@
 <template>
-    <div>
-        <button class="z-button" :class="{[`icon-${iconPosition}`]: true}">
-            <svg v-if="icon" class="icon loading">
-                <use :xlink:href="`#icon-${icon}`"></use>
-            </svg>
-            <div class="content">
-                <slot></slot>
-            </div>
-        </button>
-    </div>
+    <button class="z-button" :class="{[`icon-${iconPosition}`]: true}" @click="$emit('click')">
+        <z-icon class="icon" v-if="icon && !loading" :name="icon"></z-icon>
+        <z-icon class="loading icon" v-if="loading" name="loading"></z-icon> 
+        <div class="content">
+            <slot></slot>
+        </div>
+    </button>
 </template>
 
 <script>
     export default {
         props: {
             icon: {},
+            loading: {
+                type: Boolean,
+                default: false
+            },
             iconPosition: {
                 type: String,
                 default: 'left',
