@@ -8,3 +8,10 @@
 ```
 *{box-sizing: border-box;}
 ```
+
+##unit testing
+
+```
+npm run test
+npm run dev-test
+```
