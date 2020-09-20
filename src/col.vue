@@ -54,7 +54,7 @@
                     array.push(`col-${prefix}${device.span}`)
                 }
                 if(device.offset) {
-                    array.push(`col-${prefix}${device.offset}`)
+                    array.push(`offset-${prefix}${device.offset}`)
                 }
                 return array
             }
