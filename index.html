@@ -37,7 +37,8 @@
             <z-button>更多</z-button>
             <z-button icon="right" icon-position="right">下一页</z-button>
         </z-button-group>
-        <z-input disabled></z-input>
+        <z-input disabled
+                @change="inputChange"></z-input>
         <z-input readonly></z-input>
         <z-input value="1"></z-input>
         <z-input error="姓名不能少于两个字"></z-input>
