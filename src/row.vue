@@ -22,10 +22,9 @@
         },
         computed: {
             rowStyle () {
-                let {gutter} = this
                 return {
-                    marginleft: -gutter/2+'px',
-                    marginRight: -gutter/2+'px'
+                    marginLeft: -this.gutter / 2 + 'px',
+                    marginRight: -this.gutter / 2 + 'px'
                 }
             },
             rowClass () {

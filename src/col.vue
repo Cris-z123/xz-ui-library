@@ -29,16 +29,16 @@
                 type: [Number, String]
             },
             ipad: {
-                type: Object, validator 
+                type: Object, validator
             },
             narrowPc: {
-                type: Object, validator 
+                type: Object, validator
             },
             pc: {
-                type: Object, validator 
+                type: Object, validator
             },
             widePc: {
-                type: Object, validator 
+                type: Object, validator
             }
         },
         data () {
@@ -46,16 +46,28 @@
                 gutter: 0
             }
         },
+        methods: {
+            createClasses (device, prefix = '') {
+                if(!device) {return []}
+                let array = []
+                if(device.span) {
+                    array.push(`col-${prefix}${device.span}`)
+                }
+                if(device.offset) {
+                    array.push(`col-${prefix}${device.offset}`)
+                }
+                return array
+            }
+        },
         computed: {
             colClass () {
                 let {span, offset, ipad, narrowPc, pc, widePc} = this
                 return [
-                    span && `col-${span}`,
-                    offset && `offset-${offset}`,
-                    ...(ipad ? [`col-ipad-${ipad.span}`] : []),
-                    ...(narrowPc ? [`col-narrowPc-${narrowPc.span}`]: []),
-                    ...(pc ? [`col-pc-${pc.span}`] : []),
-                    ...(widePc ? [`col-widePc-${widePc.span}`] : [])
+                    ...this.createClasses({span, offset}),
+                    ...this.createClasses(ipad, 'ipad-'),
+                    ...this.createClasses(narrowPc, 'narrow-pc-'),
+                    ...this.createClasses(pc, 'pc-'),
+                    ...this.createClasses(widePc, 'wide-pc-')
                 ]
             },
             colStyle () {
@@ -82,7 +94,7 @@
             margin-left: ($n / 24) * 100%;
         }
     }
-    @media(min-width:577px)and(max-width: 768px) {
+    @media(min-width:577px) {
         $class-prefix: col-ipad-;
         @for $n from 1 through 24 {
             &.#{$class-prefix}#{$n} {
@@ -96,7 +108,7 @@
             }
         }
     }
-    @media(min-width:769px)and(max-width: 992px) {
+    @media(min-width:769px) {
         $class-prefix: col-narrow-pc-;
         @for $n from 1 through 24 {
             &.#{$class-prefix}#{$n} {
@@ -110,7 +122,7 @@
             }
         }
     }
-    @media(min-width:993px)and(max-width: 1200px) {
+    @media(min-width:993px) {
         $class-prefix: col-pc-;
         @for $n from 1 through 24 {
             &.#{$class-prefix}#{$n} {
