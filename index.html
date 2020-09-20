@@ -30,6 +30,7 @@
 </style>
 <body>
     <div id="app">
+        
         <z-button icon="settings" icon-position="left" :loading="loading1" @click="loading1 = !loading1">按钮</z-button>
         <z-button icon="settings" icon-position="right" :loading="true">按钮</z-button>
         <z-button-group>
@@ -37,21 +38,18 @@
             <z-button>更多</z-button>
             <z-button icon="right" icon-position="right">下一页</z-button>
         </z-button-group>
+
         <z-input disabled
                 @change="inputChange"></z-input>
         <z-input readonly></z-input>
         <z-input value="1"></z-input>
         <z-input error="姓名不能少于两个字"></z-input>
 
-        <z-row gutter="30">
-            <z-col span="2">1</z-col>
-            <z-col offset="5">2</z-col>
-        </z-row>
         <z-row gutter="20">
-            <z-col span="23" offset="1">1</z-col>
-            <z-col span="22" offset="2">2</z-col>
-            <z-col span="21" offset="3">2</z-col>
-            <z-col span="20" offset="4">2</z-col>
+            <z-col span="23" offset="1"></z-col>
+            <z-col span="22" offset="2"></z-col>
+            <z-col span="21" offset="3"></z-col>
+            <z-col span="20" offset="4"></z-col>
         </z-row>
     </div>
     <script src="./src/app.js"></script>
