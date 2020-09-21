@@ -30,7 +30,7 @@
 </style>
 <body>
     <div id="app">
-        
+
         <z-button icon="settings" icon-position="left" :loading="loading1" @click="loading1 = !loading1">按钮</z-button>
         <z-button icon="settings" icon-position="right" :loading="true">按钮</z-button>
         <z-button-group>
@@ -51,6 +51,8 @@
             <z-col span="21" offset="3"></z-col>
             <z-col span="20" offset="4"></z-col>
         </z-row>
+
+        <button @click="showToast">通知</button>
     </div>
     <script src="./src/app.js"></script>
     <script src=//at.alicdn.com/t/font_2078562_s7hdfk0ipqf.js></script>

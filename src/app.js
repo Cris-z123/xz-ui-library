@@ -10,6 +10,8 @@ import Footer from './footer'
 import Content from './content'
 import Layout from './layout'
 import Sider from './sider'
+import Toast from './toast'
+import plugin from './plugin'
 
 Vue.component('z-button', Button)
 Vue.component('z-icon', Icon)
@@ -22,6 +24,9 @@ Vue.component('z-footer', Footer)
 Vue.component('z-content', Content)
 Vue.component('z-layout', Layout)
 Vue.component('z-sider', Sider)
+Vue.component('z-toast', Toast)
+
+Vue.use(plugin)
 
 new Vue({
     el: '#app',
@@ -31,6 +36,9 @@ new Vue({
     methods: {
         inputChange(e) {
             console.log(e.target.value)
+        },
+        showToast() {
+            this.$toast('i am message')
         }
     }
 })
