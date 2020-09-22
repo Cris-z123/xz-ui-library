@@ -1,7 +1,7 @@
 <template>
-    <div class="toast">
+    <div class="toast" :class="toastClasses" ref="wrapper">
         <slot></slot>
-        <div class="line"></div>
+        <div class="line" ref="line"></div>
         <span class="close" v-if="closeButton" @click="onClickClose">{{closeButton.text}}</span>
     </div>
 </template>
@@ -26,13 +26,20 @@
                         callback: undefined
                     }
                 }
+            },
+            position: {
+                type: String,
+                default: 'top',
+                validator(value) {
+                    return ['top', 'bottom', 'mid'].indexOf(value) >= 0
+                }              
             }
         },
-        mounted() {
-            if(this.autoClose) {
-                setTimeout(() => {
-                    this.close()
-                }, this.autoCloseDelay * 1000)
+        computed: {
+            toastClasses() {
+                return {
+                    [`position-${this.position}`]: true
+                }
             }
         },
         methods: {
@@ -46,32 +53,53 @@
                     this.closeButton.callback()
                 }
             }
+        },
+        mounted() {
+            if(this.autoClose) {
+                setTimeout(() => {
+                    this.close()
+                }, this.autoCloseDelay * 1000)
+            }
+            this.$nextTick(() => {
+                this.$refs.line.style.height = `${this.$refs.wrapper.getBoundingClientRect().height}px`
+            })
         }
     }
 </script>
 
 <style lang="scss" scoped>
 $font-size: 14px;
-$toast-height: 40px;
+$toast-min-height: 40px;
 $toast-bg: rgba(0, 0, 0, .75);
 .toast {    
     position: fixed;
-    top: 0;
     left: 50%;
-    transform: translateX(-50%);
     display: flex;
     align-items: center;
     font-size: $font-size;
-    height: $toast-height;
+    min-height: $toast-min-height;
     line-height: 1.8;
     background: $toast-bg;
     color: white;
     border-radius: 4px;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, .5);
     padding: 0 16px;
+    &.position-top {
+        top: 10px;
+        transform: translateX(-50%);
+    }
+    &.position-mid {
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &.position-bottom {
+        bottom: 10px;
+        transform: translateX(-50%);
+    }
 }
 .close {
     padding-left: 16px;
+    flex-shrink: 0;
 }
 .line {
     height: 100%;
