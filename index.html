@@ -53,6 +53,22 @@
         </z-row>
         
         <button @click="showToast">通知</button>
+
+        <z-tabs :selected.sync="selectedTab" @update:selected="yyy">
+            <z-tabs-head>
+                <template slot="actions">
+                    <button>设置</button>
+                </template>
+                <z-tabs-item name="a" disabled>a</z-tabs-item>
+                <z-tabs-item name="b">b</z-tabs-item>
+                <z-tabs-item name="c">c</z-tabs-item>
+            </z-tabs-head>
+            <z-tabs-body>
+                <z-tabs-pane name="a">1</z-tabs-pane>
+                <z-tabs-pane name="b">2</z-tabs-pane>
+                <z-tabs-pane name="c">3</z-tabs-pane>
+            </z-tabs-body>
+        </z-tabs>
     </div>
     <script src="./src/app.js"></script>
     <script src=//at.alicdn.com/t/font_2078562_s7hdfk0ipqf.js></script>

@@ -5,13 +5,10 @@
 </template>
 
 <script>
+    import Vue from 'vue';
+
     export default {
         name: 'XZTabs',
-        data() {
-            return {
-                eventBus: new Vue()
-            }
-        },
         props: {
             selected: {
                 type: String,
@@ -25,13 +22,29 @@
                 }
             }
         },
+        data() {
+            return {
+                eventBus: new Vue()
+            }
+        },
         provide() {
             return {
                 eventBus: this.eventBus
             }
         },
         mounted() {
-            this.eventBus.$emit('update:selected', this.selected)
+            if(this.$children.length === 0) {
+                console && console.warn && console.warn('tabs的子组件应该有tabs-head和tabs-nav')
+            }
+            this.$children.forEach((vm) => {
+                if(vm.$options.name === 'XZTabsHead') {
+                    vm.$children.forEach((childVm) => {
+                        if(childVm.$options.name === 'XZTabsItem' && childVm.name === this.selected) {
+                            this.eventBus.$emit('update:selected', this.selected, childVm)
+                        }
+                    })
+                }
+            });
         }
     }
 </script>

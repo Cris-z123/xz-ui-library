@@ -41,7 +41,8 @@ Vue.use(plugin)
 new Vue({
     el: '#app',
     data: {
-        loading1: false
+        loading1: false,
+        selectedTab: 'a'
     },
     methods: {
         inputChange(e) {
@@ -49,6 +50,10 @@ new Vue({
         },
         showToast() {
             this.$toast('i am message')
+        },
+        yyy(data){
+            console.log('yyy')
+            console.log(data)
         }
     }
 })
