@@ -1,6 +1,6 @@
 <template>
     <div class="popover" 
-        @click="onClick" ref="popover">
+         ref="popover">
         <div ref="contentWrapper" 
             class="content-wrapper" 
             v-if="visible"
@@ -20,34 +20,80 @@
         data() {
             return { visible: false }
         },
+        mounted() {
+            if(this.trigger === 'click') {
+                this.$refs.popover.addEventListener('click', this.onClick)
+            } else {
+                this.$refs.popover.addEventListener('mouseenter', this.open)
+                this.$refs.popover.addEventListener('mouseleave', this.close)
+            }
+        },
+        destroyed() {
+            if(this.trigger === 'click') {
+                this.$refs.popover.removeEventListener('click', this.onClick)
+            } else {
+                this.$refs.popover.removeEventListener('mouseenter', this.open)
+                this.$refs.popover.removeEventListener('mouseleave', this.close)
+            }
+        },
+        computed: {
+            openEvent () {
+                if(this.trigger === 'click') {
+                    return 'click'
+                } else {
+                    return 'mouseenter'
+                }
+            },
+            closeEvent () {
+                if(this.trigger === 'click') {
+                    return 'click'
+                } else {
+                    return 'mouseleave'
+                }
+            }
+        },
         props: {
             position: {
                 type: String,
-                default: 'left',
+                default: 'top',
                 validator(value) {
                     return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0
+                }
+            },
+            trigger: {
+                type: String,
+                default: 'click',
+                validator(value) {
+                    return ['click', 'hover'].indexOf(value) >= 0
                 }
             }
         },
         methods: {
             positionContent() {
                 document.body.appendChild(this.$refs.contentWrapper)
+                let {height: height2} = this.$refs.contentWrapper.getBoundingClientRect()
                 let {width, height, top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
-                if(this.position === 'top') {
-                    this.$refs.contentWrapper.style.left = left + window.scrollY + 'px'
-                    this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
-                } else if(this.position === 'bottom') {
-                    this.$refs.contentWrapper.style.left = left + window.scrollY + 'px'
-                    this.$refs.contentWrapper.style.top = top + height + window.scrollY + 'px'
-                }else if(this.position === 'left') {
-                    this.$refs.contentWrapper.style.left = left + window.scrollY + 'px'
-                    let {height: height2} = this.$refs.contentWrapper.getBoundingClientRect()
-                    this.$refs.contentWrapper.style.top = top + window.scrollY + (height - height2) / 2 + 'px'
-                }else if(this.position === 'right') {
-                    this.$refs.contentWrapper.style.left = left + width + window.scrollY + 'px'
-                    let {height: height2} = this.$refs.contentWrapper.getBoundingClientRect()
-                    this.$refs.contentWrapper.style.top = top + window.scrollY + (height - height2) / 2 + 'px'
+                let positions = {
+                    top: {
+                        left: left + window.scrollY,
+                        top: top + window.scrollY
+                    },
+                    bottom: {
+                        left: left + window.scrollY,
+                        top: top + height + window.scrollY
+                    },
+                    left: {
+                        left: left + window.scrollY,
+                        top: top + window.scrollY + (height - height2) / 2
+                    },
+                    right: {
+                        left: left + width + window.scrollY,
+                        top: top + window.scrollY + (height - height2) / 2
+                    }
                 }
+                this.$refs.contentWrapper.style.left = positions[this.position].left + 'px'
+                this.$refs.contentWrapper.style.top = positions[this.position].top + 'px'
+
             },
             onClickDocument (e) {
                 if(this.$refs.popover 
@@ -119,10 +165,12 @@ $border-radius: 4px;
         }
         &::before {
             border-top-color: black;
+            border-bottom: none;
             top: 100%;
         }
         &::after {
             border-top-color: white;
+            border-bottom: none;
             top: calc(100% - 1px)
         }
     }
@@ -133,10 +181,12 @@ $border-radius: 4px;
         }
         &::before {
             border-bottom-color: black;
+            border-top: none;
             bottom: 100%;
         }
         &::after {
             border-bottom-color: white;
+            border-top: none;
             bottom: calc(100% - 1px)
         }
     }
@@ -149,10 +199,12 @@ $border-radius: 4px;
         }
         &::before {
             border-left-color: black;
+            border-right: none;
             left: 100%;
         }
         &::after {
             border-left-color: white;
+            border-right: none;
             left: calc(100% - 1px)
         }
     }
@@ -164,10 +216,12 @@ $border-radius: 4px;
         }
         &::before {
             border-right-color: black;
+            border-left: none;
             right: 100%;
         }
         &::after {
             border-right-color: white;
+            border-left: none;
             right: calc(100% - 1px)
         }
     }
