@@ -18,6 +18,8 @@ import TabsBody from './tabs-body'
 import TabsItem from './tabs-item'
 import TabsPane from './tabs-pane'
 import PopOver from './popover'
+import Collapse from './collapse'
+import CollapseItem from './collapse-item'
 
 Vue.component('z-button', Button)
 Vue.component('z-icon', Icon)
@@ -37,6 +39,8 @@ Vue.component('z-tabs-item', TabsItem)
 Vue.component('z-tabs-pane', TabsPane)
 Vue.component('z-tabs-head', TabsHead)
 Vue.component('z-popover', PopOver)
+Vue.component('z-collapse', Collapse)
+Vue.component('z-collapse-item', CollapseItem)
 
 Vue.use(plugin)
 
@@ -44,7 +48,8 @@ new Vue({
     el: '#app',
     data: {
         loading1: false,
-        selectedTab: 'a'
+        selectedTab: 'a',
+        selectedTab2: ['1', '2', '3']
     },
     methods: {
         inputChange(e) {
