@@ -1,9 +1,17 @@
 <template>
-    <div class="wrapper" :class="toastClasses">
-        <div class="toast" ref="toast">
+    <div class="wrapper" 
+        :class="toastClasses">
+        <div class="toast" 
+            ref="toast">
             <slot></slot>
-            <div class="line" ref="line"></div>
-            <span class="close" v-if="closeButton" @click="onClickClose">{{closeButton.text}}</span>
+            <div class="line" 
+                ref="line">
+            </div>
+            <span class="close" 
+                v-if="closeButton" 
+                @click="onClickClose">
+                {{closeButton.text}}
+            </span>
         </div>
     </div>
 </template>

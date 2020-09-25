@@ -71,8 +71,9 @@
         </z-tabs>
 
         <z-popover>
-            <template slot="content">
+            <template slot="content" slot-scope="{close}">
                 <div>展示内容1</div>
+                <button @click="close">关闭</button>
             </template>
             <template>
                 <button>click</button>

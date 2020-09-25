@@ -1,7 +1,13 @@
 <template>
-    <button class="z-button" :class="{[`icon-${iconPosition}`]: true}" @click="$emit('click')">
-        <z-icon class="icon" v-if="icon && !loading" :name="icon"></z-icon>
-        <z-icon class="loading icon" v-if="loading" name="loading"></z-icon> 
+    <button class="z-button" 
+        :class="{[`icon-${iconPosition}`]: true}" 
+        @click="$emit('click')">
+        <z-icon class="icon" 
+            v-if="icon && !loading" 
+            :name="icon"></z-icon>
+        <z-icon class="loading icon" 
+            v-if="loading" 
+            name="loading"></z-icon> 
         <div class="content">
             <slot></slot>
         </div>
