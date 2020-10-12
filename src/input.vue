@@ -47,11 +47,11 @@
 </script>
 
 <style lang="scss" scoped>
-$height: 32px;
+$height: 40px;
 $border-color: #999;
 $border-color-hover: #666;
 $border-radius: 4px;
-$font-size: 12px;
+$font-size: 14px;
 $box-shadow-color: rgba(0, 0, 0, .5);
 $red: #F1453D;
 .wrapper {
@@ -62,7 +62,7 @@ $red: #F1453D;
         margin-left: .5em;
     }
     > input {
-        height: 32px;
+        height: $height;
         border: 1px solid $border-color;
         border-radius: 4px;
         padding: 0 8px;

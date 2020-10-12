@@ -39,7 +39,7 @@
 
 <style lang="scss" scoped>
 $font-size: 14px;
-$button-height: 32px;
+$button-height: 40px;
 $button-bg: white;
 $button-active-bg: #eee;
 $border-radius: 4px;
@@ -65,6 +65,7 @@ $border-color-hover: #666;
     justify-content: center;
     align-items: center;
     vertical-align: middle;
+    cursor: pointer;
     &:hover {
     border-color: $border-color-hover;
     }
