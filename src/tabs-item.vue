@@ -59,7 +59,7 @@ $disabled-text-color: grey;
     align-items: center;
     flex-shrink: 0;
     height: 100%;
-    padding: 0 2em;
+    padding: 0 1.5em;
     cursor: pointer;
     &.active {
         color: $font-color;

@@ -22,7 +22,7 @@
         props: {
             autoClose: {
                 type: [Boolean, Number],
-                default: 2,
+                default: 3,
                 validator(value) {
                     return value === false || typeof value === 'number'
                 }
@@ -106,6 +106,7 @@ $toast-bg: rgba(0, 0, 0, .75);
 }
 .wrapper {
     position: fixed;
+    z-index: 100;
     left: 50%;
     transform: translateX(-50%);
     $animation-duration: 1s;
@@ -128,26 +129,26 @@ $toast-bg: rgba(0, 0, 0, .75);
             animation: slide-up $animation-duration;
         }
     }
-}
-.toast {    
-    display: flex;
-    align-items: center;
-    font-size: $font-size;
-    min-height: $toast-min-height;
-    line-height: 1.8;
-    background: $toast-bg;
-    color: white;
-    border-radius: 4px;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .5);
-    padding: 0 16px;
-    .close {
-    padding-left: 16px;
-    flex-shrink: 0;
-    }
-    .line {
-    height: 100%;
-    border-left: 1px solid #666;
-    margin-left: 16px;
+    > .toast {    
+        display: flex;
+        align-items: center;
+        font-size: $font-size;
+        min-height: $toast-min-height;
+        line-height: 1.8;
+        background: $toast-bg;
+        color: white;
+        border-radius: 4px;
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, .5);
+        padding: 0 16px;
+        > .close {
+            padding-left: 16px;
+            flex-shrink: 0;
+        }
+        > .line {
+            height: 100%;
+            border-left: 1px solid #666;
+            margin-left: 16px;
+        }
     }
 }
 </style>
