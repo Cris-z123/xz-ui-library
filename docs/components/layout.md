@@ -7,7 +7,9 @@ sidebarDepth: 0
 ## 预览
 布局的基础形式
 
-<layout-demo/>
+<ClientOnly>
+  <layout-demo/>
+</ClientOnly>
 
 ## 使用方法
 ```html

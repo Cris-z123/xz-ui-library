@@ -7,7 +7,9 @@ sidebarDepth: 0
 ## 预览
 输入框的基础形式
 
-<input-demo/>
+<ClientOnly>
+  <input-demo/>
+</ClientOnly>
 
 ## 使用方法
 ```html

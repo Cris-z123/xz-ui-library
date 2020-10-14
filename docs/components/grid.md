@@ -7,7 +7,9 @@ sidebarDepth: 0
 ## 预览
 通过基础的 24 分栏栅格，迅速简便地创建布局。
 
-<grid-demo/>
+<ClientOnly>
+  <grid-demo/>
+</ClientOnly>
 
 ## 使用方法
 ```html

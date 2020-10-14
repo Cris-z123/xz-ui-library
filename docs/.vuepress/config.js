@@ -1,4 +1,5 @@
 module.exports = {
+    base: '/xz-ui-website/',
     title: 'XZ UI',
     description: '一个基于Vue2.x简单好用的UI框架',
     themeConfig: {

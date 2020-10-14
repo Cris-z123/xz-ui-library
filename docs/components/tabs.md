@@ -7,7 +7,9 @@ sidebarDepth: 0
 ## 预览
 标签页的基础形式
 
-<tabs-demo/>
+<ClientOnly>
+  <tabs-demo/>
+</ClientOnly>
 
 ## 使用方法
 此组件的 z-tabs z-tabs-item z-tabs-pane 必须有一一对应的 name。

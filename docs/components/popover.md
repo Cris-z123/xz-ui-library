@@ -7,7 +7,9 @@ sidebarDepth: 0
 ## 预览
 弹出框的基础形式
 
-<popover-demo/>
+<ClientOnly>
+  <popover-demo/>
+</ClientOnly>
 
 ## 使用方法
 ```html

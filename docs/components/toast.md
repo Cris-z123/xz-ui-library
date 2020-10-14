@@ -7,7 +7,9 @@ sidebarDepth: 0
 ## 预览
 弹出提示框的基础形式
 
-<toast-demo/>
+<ClientOnly>
+  <toast-demo/>
+</ClientOnly>
 
 ## 使用方法
 ```html

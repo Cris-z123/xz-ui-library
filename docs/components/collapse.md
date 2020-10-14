@@ -6,8 +6,9 @@ sidebarDepth: 0
 
 ## 预览
 
-
-<collapse-demo/>
+<ClientOnly>
+  <collapse-demo/>
+</ClientOnly>
 
 ## 使用方法
 ```html
